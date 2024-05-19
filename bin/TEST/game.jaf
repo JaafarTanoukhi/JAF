@@ -1,0 +1,26 @@
+import "folder1\cell.jaf"
+
+#Player player1
+#Player player2
+
+
+#Game
+create cell{rowNumber = (0,1,2,3,4,5,6,7,8,9), content = ""}
+
+#Event checkXWin
+Condition
+~ cell {rowNumber = (N,N+1,N+2), content = "X"}
+~ cell {rowNumber = (N,N+3,N+6), content = "X"}
+~ cell {rowNumber = (2,4,6), content = "X"}
+~ cell {rowNumber = (0,4,8), content = "X"}
+Do
+~ update Game win = player1
+
+#Event checkYWin
+Condition
+~ cell {rowNumber = (N,N+1,N+2), content = "Y"}
+~ cell {rowNumber = (N,N+3,N+6), content = "Y"}
+~ cell {rowNumber = (2,4,6), content = "Y"}
+~ cell {rowNumber = (0,4,8), content = "Y"}
+Do
+~ update Game win = player2

@@ -1,17 +1,19 @@
-package Compiler;
+package Compiler.Token;
+
+import Compiler.Location;
 
 public class Token {
     final TokenType type;
     final String lexeme;
     final Object literal;
-    final int line;
+    final Location location;
 
 
-    public Token(TokenType type, String lexeme, Object literal, int line) {
+    public Token(TokenType type, String lexeme, Object literal, Location location) {
         this.type = type;
         this.lexeme = lexeme;
         this.literal = literal;
-        this.line = line;
+        this.location = new Location(location);
     }
 
     public String toString(){

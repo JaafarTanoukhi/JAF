@@ -1,0 +1,10 @@
+#Prop cell
+rowNumber,content("X","O","")
+
+|fillX 
+~ update content = "X"
+~ LOCKED
+
+|fillO
+~ update content = "O"
+~ LOCKED
