@@ -1,16 +1,16 @@
 package Compiler;
 
 
+import static Compiler.Grammar.TokenType.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import Compiler.Token.Token;
-import Compiler.Token.TokenType;
+import Compiler.Grammar.Token;
+import Compiler.Grammar.TokenType;
 import Compiler.Util.ErrorFormatter;
 import Compiler.Util.FileDependencyResolver.FileContent;
-
-import static Compiler.Token.TokenType.*;
 
 public class Lexer {
 
@@ -27,21 +27,36 @@ public class Lexer {
         keywords.put("yes", TRUE);
         keywords.put("no", FALSE);
 
+        keywords.put("Playing",PLAYING);
         keywords.put("Prop", PROP);
         keywords.put("Game", GAME);
         keywords.put("Player", PLAYER);
         keywords.put("Event", EVENT);
-
+        
+        keywords.put("play",PLAY);
         keywords.put("create", CREATE);
         keywords.put("transfer", TRANSFER);
         keywords.put("update", UPDATE);
         keywords.put("destroy", DESTROY);
+        keywords.put("switch", SWITCH);
+        keywords.put("this",THIS);
 
         keywords.put("LOCKED", LOCKED);
         keywords.put("UNLOCKED", UNLOCKED);
 
+        keywords.put("Move",MOVE);
         keywords.put("Condition", CONDITION);
         keywords.put("Do", DO);
+    }
+
+    public Lexer(String line){
+        this.source = line;
+        this.currLocation = new Location("--CONSOLE--");
+
+        this.start = 0;
+        this.tokens = new ArrayList<>();
+        this.errors = new ArrayList<>();
+
     }
 
     public Lexer(FileContent content) {
@@ -145,7 +160,6 @@ public class Lexer {
                 } else {
                     logError("Unexpected character");
                 }
-
         }
     }
 

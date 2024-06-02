@@ -6,22 +6,37 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
+            "name": "Venn",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "Compiler.Util.Venn",
+            "projectName": "JAF_7dc335a3"
         },
         {
             "type": "java",
-            "name": "App",
+            "name": "JAF",
             "request": "launch",
-            "mainClass": "App",
+            "mainClass": "Compiler.JAF",
+            "projectName": "JAF_7dc335a3"
+        },
+        {
+            "type": "java",
+            "name": "AstGenerator",
+            "request": "launch",
+            "mainClass": "Compiler.Util.AstGenerator",
+            "projectName": "JAF_7dc335a3"
+        },
+        {
+            "type": "java",
+            "name": "tester",
+            "request": "launch",
+            "mainClass": "Compiler.tester",
             "projectName": "JAF_7dc335a3"
         },
         {
             "type": "java",
             "name": "TicTacToe",
             "request": "launch",
-            "mainClass": "Compiler.TicTacToe",
+            "mainClass": "TicTacToe",
             "projectName": "JAF_7dc335a3",
             "vmArgs": "--module-path \"C:\\Program Files\\Java\\javafx-sdk-22.0.1\\lib\" --add-modules javafx.controls,javafx.fxml"
         }

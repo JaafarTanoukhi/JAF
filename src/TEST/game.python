@@ -1,0 +1,40 @@
+#Prop cell
+rowNumber,content
+
+Move fillX
+Do 
+~ update this (content = "X")
+
+Move fillO
+Do
+~ update this (content = "O")
+
+#Player player1
+#Player player2
+
+
+
+#Prop GameState
+winner
+
+
+#Event checkXWin
+Condition
+~ cell (rowNumber = 1 , content = "X")
+Do
+~ update GameState (winner = "") (winner = "player1")
+
+#Event checkYWin
+Condition
+~ cell (rowNumber = 1, content = "Y")
+~ cell (rowNumber = 2, content = "Y")
+~ cell (rowNumber = 3, content = "Y")
+Do
+~ update GameState (winner = "") (winner = "player2")
+
+#Game
+~ create cell (rowNumber = 1, content = "")
+~ create cell (rowNumber = 2, content = "")
+~ create cell (rowNumber = 3, content = "")
+~ create GameState (winner = "")
+
