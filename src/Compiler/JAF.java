@@ -12,6 +12,7 @@ import Compiler.Grammar.Block;
 import Compiler.Grammar.Expr;
 import Compiler.Grammar.Token;
 import Compiler.Grammar.TokenType;
+import Compiler.Util.Context;
 import Compiler.Util.FileDependencyResolver;
 import Compiler.Util.FileDependencyResolver.FileContent;
 
@@ -49,8 +50,7 @@ public class JAF {
     // }
 
     private static void test() throws IOException {
-        Interface inter = new Interface();
-       System.out.println(inter.Query("play cell (rowNumber = 1) fillX"));
+        
     }
 
     private static List<Token> runLexer(){

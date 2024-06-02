@@ -14,7 +14,7 @@ import Compiler.Grammar.Expr.Match;
 import Compiler.Grammar.Token;
 
 public class Context {
-    private String currentContext = "";
+    public String currentContext = "";
     private Map<String, List<Elem>> objectsMap = new HashMap<>();
     private Map<String, Map<String,Move>> movesMap = new HashMap<>();
     private List<Move> eventMoves = new ArrayList<>();
@@ -65,6 +65,14 @@ public class Context {
 
     public List<Move> getEvents(){
         return this.eventMoves;
+    }
+
+    public Object find(String nav){
+        String[] fields = nav.split("\\.");
+        List<Elem> elems = objectsMap.get(fields[0]);
+        Object result = elems.get(0).get(fields[1]);
+        
+        return result;
     }
 
     @Override

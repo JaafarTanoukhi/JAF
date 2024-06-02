@@ -1,6 +1,9 @@
 
 
 
+import javax.management.IntrospectionException;
+
+import Compiler.Interface;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,6 +18,7 @@ public class TicTacToe extends Application {
 
     private Button[][] board;
     private boolean xTurn = true;
+    private Interface inter = new Interface();
 
     public static void main(String[] args) {
         launch(args);
@@ -53,8 +57,20 @@ public class TicTacToe extends Application {
 
     private void handleButtonClick(int row, int col) {
         if (board[row][col].getText().isEmpty()) {
-            board[row][col].setText(xTurn ? "X" : "O");
+            if(xTurn){
+                board[row][col].setText("X");
+                fill(col + row * 3, "X");
+            }
+            else{
+                board[row][col].setText("O");
+                fill(col + row * 3, "O");
+            }
+            String winner = checkWin();
+            if(winner != ""){
+                showWinner(winner);
+            }
             xTurn = !xTurn;
+           
         }
     }
 
@@ -67,12 +83,22 @@ public class TicTacToe extends Application {
         resetBoard();
     }
 
+    private String checkWin(){
+        return (String) inter.getContext().find("GameState.winner");
+    }
+
+    private void fill(int rowNumber, String letter){
+        System.out.println("play cell (rowNumber = " + rowNumber + ") fill"+ letter);
+        inter.Query("play cell (rowNumber = " + rowNumber + ") fill"+ letter);
+    }
+
     private void resetBoard() {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 board[row][col].setText("");
             }
         }
+        inter = new Interface();
         xTurn = true;
     }
 }

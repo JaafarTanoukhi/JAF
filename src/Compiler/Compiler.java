@@ -136,13 +136,6 @@ public class Compiler implements Expr.Visitor<Object>, Block.Visitor<Void>,Actio
             }
         }
     }
-
-    //   System.out.println("STATE : ");
-    //   System.out.println("-----------------------------------");
-    //   System.out.print("\u001B[32m");
-    //   System.out.println(context);
-    //   System.out.print("\u001B[0m");
-    //   System.out.println("-----------------------------------");
       
       return context;
     }
