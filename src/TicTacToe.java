@@ -1,8 +1,3 @@
-
-
-
-import javax.management.IntrospectionException;
-
 import Compiler.Interface;
 import javafx.application.Application;
 import javafx.geometry.Pos;

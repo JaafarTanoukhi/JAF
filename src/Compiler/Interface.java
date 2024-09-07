@@ -18,7 +18,7 @@ public class Interface {
         try{
             FileDependencyResolver resolver = new FileDependencyResolver();
             List<Token> tokens = new ArrayList<>();
-            for(FileContent content : resolver.resolveDependencies("src\\TEST\\game.py")){
+            for(FileContent content : resolver.resolveDependencies("src\\TEST\\game.jaf")){
                 Lexer lexer = new Lexer(content);
                 lexer.tokenize();
                 tokens.addAll(lexer.getTokens());

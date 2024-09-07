@@ -6,34 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Venn",
-            "request": "launch",
-            "mainClass": "Compiler.Util.Venn",
-            "projectName": "JAF_7dc335a3"
-        },
-        {
-            "type": "java",
-            "name": "JAF",
-            "request": "launch",
-            "mainClass": "Compiler.JAF",
-            "projectName": "JAF_7dc335a3"
-        },
-        {
-            "type": "java",
-            "name": "AstGenerator",
-            "request": "launch",
-            "mainClass": "Compiler.Util.AstGenerator",
-            "projectName": "JAF_7dc335a3"
-        },
-        {
-            "type": "java",
-            "name": "tester",
-            "request": "launch",
-            "mainClass": "Compiler.tester",
-            "projectName": "JAF_7dc335a3"
-        },
-        {
-            "type": "java",
             "name": "TicTacToe",
             "request": "launch",
             "mainClass": "TicTacToe",
