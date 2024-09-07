@@ -5,6 +5,7 @@ import java.util.List;
 public abstract class Condition {
     public interface Visitor<R> {
        public R visitMatchCondition(Match condition);
+       public R visitConditionGroupCondition(ConditionGroup condition);
     }
    public static class Match extends Condition {
         public Match(Token name, Expr.Match condition) {
@@ -18,6 +19,19 @@ public abstract class Condition {
         @Override
         public <R> R accept(Visitor<R> visitor) {
             return visitor.visitMatchCondition(this);
+        }
+    }
+
+   public static class ConditionGroup extends Condition {
+        public ConditionGroup(List<Condition.Match> conditions) {
+            this.conditions = conditions;
+        }
+
+        public final List<Condition.Match> conditions;
+
+        @Override
+        public <R> R accept(Visitor<R> visitor) {
+            return visitor.visitConditionGroupCondition(this);
         }
     }
 

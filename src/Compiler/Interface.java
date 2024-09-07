@@ -46,7 +46,7 @@ public class Interface {
         for(Play play : playing.plays){
            result = compiler.executeQuery(play);
         }
-
+        
         return result;
     }
 

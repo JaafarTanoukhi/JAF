@@ -93,12 +93,19 @@ public class Parser {
     private Block.Event event() {
         expect(IDENTIFIER, "Expected IDENTIFIER after event block start");
         Token name = previous();
+        List<Condition.ConditionGroup> conditionGroups = new ArrayList<>();
+
         expect(CONDITION, "Event block must have condition");
-        List<Condition.Match> condition = condition();
+        conditionGroups.add(new Condition.ConditionGroup(condition()));
+
+        while(match(CONDITION)){
+            conditionGroups.add(new Condition.ConditionGroup(condition()));
+        }
+
         expect(DO, "Event block must have do");
         List<Action> actions = actionList();
 
-        return new Block.Event(name, condition, actions);
+        return new Block.Event(name, conditionGroups, actions);
     }
 
     private Query.Play play(){
@@ -126,17 +133,14 @@ public class Parser {
         expect(IDENTIFIER, "Expected IDENTIFIER after Move Block Start");
         Token name = previous();
 
-        List<Condition.Match> condition = null;
-        if(match(CONDITION)){
-            condition = condition();
-        }
-        else{
-            condition = new ArrayList<>();
+        List<Condition.ConditionGroup> conditionGroups = new ArrayList<>();
+        while(match(CONDITION)){
+            conditionGroups.add(new Condition.ConditionGroup(condition()));
         }
         expect(DO, "Move block must have do");
         List<Action> actions = actionList();
 
-        return new Block.Move(name, condition, actions);
+        return new Block.Move(name, conditionGroups, actions);
     }
 
     private List<Condition.Match> condition(){

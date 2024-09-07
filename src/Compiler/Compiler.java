@@ -31,6 +31,7 @@ import Compiler.Grammar.Action.UpdateThis;
 import Compiler.Grammar.Query;
 import Compiler.Grammar.Query.Play;
 import Compiler.Grammar.Condition;
+import Compiler.Grammar.Condition.ConditionGroup;
 
 import java.util.List;
 
@@ -98,9 +99,11 @@ public class Compiler implements Expr.Visitor<Object>, Block.Visitor<Void>,Actio
     @Override
     public Void visitEventBlock(Event block) {
         context.defineBlock(block.name.lexeme);
-        context.defineEvent(block.condition,block.actions);
+        context.defineEvent(block.conditionGroup,block.actions);
         return null;
     }
+
+
 
 
 
@@ -123,16 +126,29 @@ public class Compiler implements Expr.Visitor<Object>, Block.Visitor<Void>,Actio
       
       Move move = context.getMove(query.moveName.lexeme);
 
-      if(checker(move.condition)){
-          for(Action action : move.actions){
-              executeAction(action);
+      if(move.conditionGroup.size() > 0 ){
+          for(ConditionGroup group : move.conditionGroup){
+              if(group.accept(this)){
+                  for(Action action : move.actions){
+                      executeAction(action);
+                    }
+                    break;
+                }
+            }
+        }
+        else{
+            for(Action action : move.actions){
+                executeAction(action);
             }
         }
 
       for(Move m : context.getEvents()){
-        if(checker(m.condition)){
-            for(Action action : m.actions){
-                executeAction(action);
+        for(Condition.ConditionGroup group : m.conditionGroup){
+            if(group.accept(this)){
+                for(Action action : m.actions){
+                    executeAction(action);
+                }
+                break;
             }
         }
     }
@@ -140,16 +156,14 @@ public class Compiler implements Expr.Visitor<Object>, Block.Visitor<Void>,Actio
       return context;
     }
 
-    private Boolean checker(List<Condition.Match> conditions){
-        for(Condition condition : conditions){
-            if(!checkCondition(condition)) return false;
+    @Override
+    public Boolean visitConditionGroupCondition(ConditionGroup condition) {
+        for(Condition cond : condition.conditions){
+            if(!cond.accept(this)) return false;
         }
         return true;
     }
 
-    private Boolean checkCondition(Condition condition){
-        return condition.accept(this);
-    }
 
     @Override
     public Boolean visitMatchCondition(Condition.Match condition) {

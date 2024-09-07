@@ -9,6 +9,7 @@ Move fillO
 Do
 ~ update this (content = "O")
 
+
 #Player player1
 #Player player2
 
@@ -45,31 +46,39 @@ Do
 
 #Event checkYWin
 Condition
-~ cell (rowNumber = 0 , content = "Y")
-~ cell (rowNumber = 1 , content = "Y")
-~ cell (rowNumber = 2 , content = "Y")
+~ cell (rowNumber = 0 , content = "O")
+~ cell (rowNumber = 1 , content = "O")
+~ cell (rowNumber = 2 , content = "O")
 Condition
-~ cell (rowNumber = 3 , content = "Y")
-~ cell (rowNumber = 4 , content = "Y")
-~ cell (rowNumber = 5 , content = "Y")
+~ cell (rowNumber = 3 , content = "O")
+~ cell (rowNumber = 4 , content = "O")
+~ cell (rowNumber = 5 , content = "O")
 Condition
-~ cell (rowNumber = 6 , content = "Y")
-~ cell (rowNumber = 7 , content = "Y")
-~ cell (rowNumber = 8 , content = "Y")
-Conditions
-~ cell (rowNumber = 0 , content = "Y")
-~ cell (rowNumber = 4 , content = "Y")
-~ cell (rowNumber = 8 , content = "Y")
+~ cell (rowNumber = 6 , content = "O")
+~ cell (rowNumber = 7 , content = "O")
+~ cell (rowNumber = 8 , content = "O")
 Condition
-~ cell (rowNumber = 2 , content = "Y")
-~ cell (rowNumber = 4 , content = "Y")
-~ cell (rowNumber = 6 , content = "Y")
+~ cell (rowNumber = 0 , content = "O")
+~ cell (rowNumber = 4 , content = "O")
+~ cell (rowNumber = 8 , content = "O")
+Condition
+~ cell (rowNumber = 2 , content = "O")
+~ cell (rowNumber = 4 , content = "O")
+~ cell (rowNumber = 6 , content = "O")
 Do
 ~ update GameState (winner = "") (winner = "player2")
 
 #Game
+~ create cell (rowNumber = 0, content = "")
 ~ create cell (rowNumber = 1, content = "")
 ~ create cell (rowNumber = 2, content = "")
 ~ create cell (rowNumber = 3, content = "")
+~ create cell (rowNumber = 4, content = "")
+~ create cell (rowNumber = 5, content = "")
+~ create cell (rowNumber = 6, content = "")
+~ create cell (rowNumber = 7, content = "")
+~ create cell (rowNumber = 8, content = "")
+~ create cell (rowNumber = 9, content = "")
+
 ~ create GameState (winner = "")
 

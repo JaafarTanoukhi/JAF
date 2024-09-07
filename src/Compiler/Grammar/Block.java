@@ -74,14 +74,14 @@ public abstract class Block {
     }
 
    public static class Event extends Block {
-        public Event(Token name, List<Condition.Match> condition, List<Action> actions) {
+        public Event(Token name, List<Condition.ConditionGroup> conditionGroup, List<Action> actions) {
             this.name = name;
-            this.condition = condition;
+            this.conditionGroup = conditionGroup;
             this.actions = actions;
         }
 
         public final Token name;
-        public final List<Condition.Match> condition;
+        public final List<Condition.ConditionGroup> conditionGroup;
         public final List<Action> actions;
 
         @Override
@@ -91,14 +91,14 @@ public abstract class Block {
     }
 
    public static class Move extends Block {
-        public Move(Token name, List<Condition.Match> condition, List<Action> actions) {
+        public Move(Token name, List<Condition.ConditionGroup> conditionGroup, List<Action> actions) {
             this.name = name;
-            this.condition = condition;
+            this.conditionGroup = conditionGroup;
             this.actions = actions;
         }
 
         public final Token name;
-        public final List<Condition.Match> condition;
+        public final List<Condition.ConditionGroup> conditionGroup;
         public final List<Action> actions;
 
         @Override

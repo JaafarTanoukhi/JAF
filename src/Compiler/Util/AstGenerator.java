@@ -23,8 +23,8 @@ public class AstGenerator {
             "Player : Token name, List<Token> state, List<Action> createActs",
             "Game : List<Token> state, List<Action> createActs",
             "Prop : Token name, List<Token> state, List<Block.Move> moves",
-            "Event : Token name, List<Condition.Match> condition, List<Action> actions",
-            "Move : Token name, List<Condition.Match> condition, List<Action> actions"
+            "Event : Token name, List<Condition.ConditionGroup> conditionGroup, List<Action> actions",
+            "Move : Token name, List<Condition.ConditionGroup> conditionGroup, List<Action> actions"
         ));
 
         defineAst(outputDir, "Util", Arrays.asList(
@@ -32,7 +32,8 @@ public class AstGenerator {
         ));
 
         defineAst(outputDir, "Condition", Arrays.asList(
-            "Match: Token name, Expr.Match condition"
+            "Match: Token name, Expr.Match condition",
+            "ConditionGroup : List<Condition.Match> conditions"
         ));
 
         defineAst(outputDir,"Action", Arrays.asList(

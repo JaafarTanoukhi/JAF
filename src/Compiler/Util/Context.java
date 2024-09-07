@@ -37,9 +37,10 @@ public class Context {
         movesMap.get(currentContext).put(move.name.lexeme,move);
     }
 
-    public void defineEvent(List<Condition.Match> condition, List<Action> actions){
+    public void defineEvent(List<Condition.ConditionGroup> conditionGroup, List<Action> actions){
         if(currentContext == "") throw new RuntimeError("Invalid context while defining event");
-        eventMoves.add(new Move(new Token(),condition,actions));
+        
+        eventMoves.add(new Move(new Token(),conditionGroup,actions));
     }
 
     public void set(String name){
@@ -71,7 +72,7 @@ public class Context {
         String[] fields = nav.split("\\.");
         List<Elem> elems = objectsMap.get(fields[0]);
         Object result = elems.get(0).get(fields[1]);
-        
+
         return result;
     }
 
